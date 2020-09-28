@@ -16,8 +16,8 @@ public class Battery {
     }
 
     public void exchange(Battery another) {
-        load = load - 10;
-        another.setLoad(another.getLoad() + 10);
+        another.setLoad(another.getLoad() + this.load);
+        this.load = 0;
     }
 
     public static void main(String[] args) {
