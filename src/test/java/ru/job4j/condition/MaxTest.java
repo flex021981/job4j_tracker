@@ -9,16 +9,16 @@ public class MaxTest {
 
     @Test
     public void maxTwoNumbers() {
-        assertThat(Max.max(3,5), is(5));
+        assertThat(Max.max(3, 5), is(5));
     }
 
     @Test
     public void maxThreeNumbers() {
-        assertThat(Max.max(3,5, 100), is(100));
+        assertThat(Max.max(3, 5, 100), is(100));
     }
 
     @Test
     public void maxFourNumbers() {
-        assertThat(Max.max(3,5, 10, -15), is(10));
+        assertThat(Max.max(3, 5, 10, -15), is(10));
     }
 }
