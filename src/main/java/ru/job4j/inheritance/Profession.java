@@ -6,6 +6,8 @@ public class Profession {
     private String name;
     private String surname;
     private String education;
+    private LocalDate birthday;
+
 
     public String getName() {
         return name;
@@ -22,6 +24,4 @@ public class Profession {
     public LocalDate getBirthday() {
         return birthday;
     }
-
-    private LocalDate birthday;
 }

@@ -1,21 +1,26 @@
 package ru.job4j.inheritance;
 
 public class Doctor extends Profession {
-    Diagnosis diagnosis;
-    Pacient pacient;
+    private Diagnosis diagnosis;
+    private Pacient pacient;
+
     public Diagnosis heal(Pacient pacient) {
         return diagnosis;
     }
 }
 
-class Diagnosis{
-    String name;
+class Diagnosis {
+    private String name;
 
     public String getName() {
         return name;
     }
 }
+
 class Pacient {
+    private String name;
+    private String surname;
+
     public String getName() {
         return name;
     }
@@ -23,7 +28,4 @@ class Pacient {
     public String getSurname() {
         return surname;
     }
-
-    String name;
-    String surname;
 }
