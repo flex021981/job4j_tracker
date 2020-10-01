@@ -29,7 +29,7 @@ public class Library {
 
         System.out.println();
         for (Book book : arrBooks) {
-            if (book.getName() == "Clean code") {
+            if (book.getName().equals("Clean code")) {
                 System.out.println(book.toString());
             }
         }
