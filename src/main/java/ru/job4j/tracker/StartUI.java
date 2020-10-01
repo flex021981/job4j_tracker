@@ -14,9 +14,18 @@ public class StartUI {
         return item.getCreated().format(formatter);
     }
 
+    @Override
+    public String toString() {
+        return "StartUI{" +
+                "itemName=" + item.getName() +
+                '}';
+    }
+
     public static void main(String[] args) {
         Item item = new Item();
+        item.setName("nameItem");
         StartUI startUI = new StartUI(item);
         System.out.println(startUI.getItemCreated());
+        System.out.println(startUI.toString());
     }
 }
