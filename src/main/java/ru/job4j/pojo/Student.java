@@ -8,7 +8,6 @@ public class Student {
     private String group;
     private Date receiptDate;
 
-
     public String getName() {
         return name;
     }

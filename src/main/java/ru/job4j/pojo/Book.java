@@ -30,9 +30,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "name='" + name + '\'' +
-                ", numPages=" + numPages +
-                '}';
+        return "Book{" + "name='" + name + '\'' + ", numPages=" + numPages + '}';
     }
 }

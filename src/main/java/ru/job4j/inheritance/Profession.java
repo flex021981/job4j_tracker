@@ -8,7 +8,6 @@ public class Profession {
     private String education;
     private LocalDate birthday;
 
-
     public String getName() {
         return name;
     }

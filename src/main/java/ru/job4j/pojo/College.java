@@ -10,9 +10,9 @@ public class College {
         studentIvan.setGroup("Math-03");
         studentIvan.setReceiptDate(new Date());
         System.out.println(
-                "ФИО: " + studentIvan.getName() + " " + studentIvan.getSurname() + "\n" +
-                        "Группа: " + studentIvan.getGroup() + "\n" +
-                        "Дата поступления: " + studentIvan.getReceiptDate()
-        );
+                "ФИО: " + studentIvan.getName() + " "
+                        + studentIvan.getSurname() + "\n" + "Группа: "
+                        + studentIvan.getGroup() + "\n"
+                        + "Дата поступления: " + studentIvan.getReceiptDate());
     }
 }

@@ -49,6 +49,4 @@ public class PointTest {
         Point pointTwo = new Point(0, 0, 2);
         Assert.assertEquals(2, pointOne.distance3d(pointTwo), 0.01);
     }
-
-
 }

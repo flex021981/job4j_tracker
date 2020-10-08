@@ -1,6 +1,5 @@
 package ru.job4j.pojo;
 
-
 public class Store {
     public static void main(String[] args) {
         Product milk = new Product("Milk", 10);
