@@ -62,7 +62,7 @@ public class Tracker {
         if (index == -1) {
             return false;
         } else {
-            items[index] = item;
+            items[index].setName(item.getName());
             return true;
         }
     }
