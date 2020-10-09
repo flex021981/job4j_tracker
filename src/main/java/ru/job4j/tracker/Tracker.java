@@ -31,15 +31,6 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        /*Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
-            }
-        }
-        return rsl;*/
         /* Находим индекс */
         int index = indexOf(id);
         /* Если индекс найден возвращаем item, иначе null */
@@ -61,7 +52,7 @@ public class Tracker {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
-            item.setId(items[index].getId());
+            item.setId(id);
             items[index] = item;
         }
         return rsl;
@@ -72,7 +63,7 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             items[index] = null;
-            System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+            System.arraycopy(items, index + 1, items, index, size);
             //items[size - 1] = null;
             size--;
         }
