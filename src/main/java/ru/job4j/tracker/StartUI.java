@@ -26,15 +26,13 @@ public class StartUI {
         }
     }
 
-    public static void editItem(Input input, Tracker tracker) {
-        System.out.println("=== Edit item ====");
-        int idReplace = input.askInt("Enter application id for replace:");
-        String nameReplace = input.askStr("Enter application name:");
-        Item itemReplace = new Item(nameReplace);
-        itemReplace.setName(nameReplace);
-        boolean replace = tracker.replace(idReplace, itemReplace);
-        System.out.print("Operation result:");
-        System.out.println(replace ? "success" : "failure");
+    public static void replaceItem(Input input, Tracker tracker) {
+        System.out.println(" === Update item ====");
+        int id = input.askInt("Enter id:");
+        String name = input.askStr("Enter a new name of item: ");
+        Item item = new Item(name);
+        item.setId(id);
+        tracker.replace(id, item);
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
@@ -81,7 +79,7 @@ public class StartUI {
             } else if (select == 1) {
                 StartUI.showAllItem(tracker);
             } else if (select == 2) {
-                StartUI.editItem(input, tracker);
+                StartUI.replaceItem(input, tracker);
             } else if (select == 3) {
                 StartUI.deleteItem(input, tracker);
             } else if (select == 4) {
