@@ -11,60 +11,83 @@ public class StartUI {
             "Exit Program"
     };
 
+    public static void createItem(Input input, Tracker tracker) {
+        System.out.println("=== Create a new Item ====");
+        String name = input.askStr("Enter name: ");
+        Item item = new Item(name);
+        tracker.add(item);
+    }
+
+    public static void showAllItem(Tracker tracker) {
+        System.out.println("=== Show all items ====");
+        Item[] allItems = tracker.findAll();
+        for (Item item : allItems) {
+            System.out.println("ID: " + item.getId() + " Name: " + item.getName());
+        }
+    }
+
+    public static void editItem(Input input, Tracker tracker) {
+        System.out.println("=== Edit item ====");
+        int idReplace = input.askInt("Enter application id for replace:");
+        String nameReplace = input.askStr("Enter application name:");
+        Item itemReplace = new Item(nameReplace);
+        itemReplace.setName(nameReplace);
+        boolean replace = tracker.replace(idReplace, itemReplace);
+        System.out.print("Operation result:");
+        System.out.println(replace ? "success" : "failure");
+    }
+
+    public static void deleteItem(Input input, Tracker tracker) {
+        System.out.println("=== Delete item ====");
+        int idDelete = input.askInt("Enter application id for delete:");
+        boolean delete = tracker.delete(idDelete);
+        System.out.print("Operation result:");
+        System.out.println(delete ? "success" : "failure");
+    }
+
+    public static void findItemById(Input input, Tracker tracker) {
+        System.out.println("=== Find item by Id ====");
+        int idFind = input.askInt("Enter application id for find:");
+        Item findItem = tracker.findById(idFind);
+        System.out.print("Operation result: ");
+        System.out.println(
+                findItem == null
+                        ? ("заявка с таким id не найдена.")
+                        : ("ID: " + findItem.getId() + " Name: " + findItem.getName())
+        );
+    }
+
+    public static void findItemByName(Input input, Tracker tracker) {
+        System.out.println("=== Find items by name ====");
+        String itemName = input.askStr("Enter application name for find:");
+        Item[] findItems = tracker.findByName(itemName);
+        System.out.println("Operation result:");
+        if (findItems.length != 0) {
+            for (Item item : findItems) {
+                System.out.println("ID: " + item.getId() + " Name: " + item.getName());
+            }
+        } else {
+            System.out.println("заявка с таким name не найдена.");
+        }
+    }
+
     public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
             this.showMenu();
             int select = input.askInt("Select: ");
             if (select == 0) {
-                System.out.println("=== " + menuItems[select] + " ===");
-                String name = input.askStr("Enter name: ");
-                Item item = new Item(name);
-                System.out.println(menuItems[select] + " name " + tracker.add(item).getName());
+                StartUI.createItem(input, tracker);
             } else if (select == 1) {
-                /*Добавить остальные действия системы по меню. */
-                System.out.println("=== " + menuItems[select] + " ===");
-                Item[] allItems = tracker.findAll();
-                for (Item item : allItems) {
-                    System.out.println("ID: " + item.getId() + " Name: " + item.getName());
-                }
+                StartUI.showAllItem(tracker);
             } else if (select == 2) {
-                System.out.println("=== " + menuItems[select] + " ===");
-                int idReplace = input.askInt("Enter application id for replace:");
-                String nameReplace = input.askStr("Enter application name:");
-                Item itemReplace = new Item(nameReplace);
-                itemReplace.setName(nameReplace);
-                boolean replace = tracker.replace(idReplace, itemReplace);
-                System.out.print("Operation result:");
-                System.out.println(replace ? "success" : "failure");
+                StartUI.editItem(input, tracker);
             } else if (select == 3) {
-                System.out.println("=== " + menuItems[select] + " ===");
-                int idDelete = input.askInt("Enter application id for delete:");
-                boolean delete = tracker.delete(idDelete);
-                System.out.print("Operation result:");
-                System.out.println(delete ? "success" : "failure");
+                StartUI.deleteItem(input, tracker);
             } else if (select == 4) {
-                System.out.println("=== " + menuItems[select] + " ===");
-                int idFind = input.askInt("Enter application id for find:");
-                Item findItem = tracker.findById(idFind);
-                System.out.print("Operation result: ");
-                System.out.println(
-                        findItem == null
-                                ? ("заявка с таким id не найдена.")
-                                : ("ID: " + findItem.getId() + " Name: " + findItem.getName())
-                );
+                StartUI.findItemById(input, tracker);
             } else if (select == 5) {
-                System.out.println("=== " + menuItems[select] + " ===");
-                String itemName = input.askStr("Enter application name for find:");
-                Item[] findItems = tracker.findByName(itemName);
-                System.out.println("Operation result:");
-                if (findItems.length != 0) {
-                    for (Item item : findItems) {
-                        System.out.println("ID: " + item.getId() + " Name: " + item.getName());
-                    }
-                } else {
-                    System.out.println("заявка с таким name не найдена.");
-                }
+                StartUI.findItemByName(input, tracker);
             } else if (select == 6) {
                 run = false;
             }
