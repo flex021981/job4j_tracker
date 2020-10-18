@@ -1,9 +1,8 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
@@ -24,6 +23,64 @@ public class StartUITest {
     }
 
     @Test
+    public void whenFindAllAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item itemOne = tracker.add(new Item("OneItem"));
+        Item itemTwo = tracker.add(new Item("OneItem"));
+
+        Input in = new StubInput(
+                new String[]{"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is("OneItem"));
+        assertThat(tracker.findAll()[1].getName(), is("OneItem"));
+    }
+
+    @Test
+    public void whenFindByNameAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        String findName = "OneItem";
+        Item itemOne = tracker.add(new Item(findName));
+        Item itemTwo = tracker.add(new Item(findName));
+
+        Input in = new StubInput(
+                new String[]{"0", findName, "1"}
+        );
+        UserAction[] actions = {
+                new FindByNameAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is(findName));
+        assertThat(tracker.findAll()[1].getName(), is(findName));
+    }
+
+    @Test
+    public void whenFindByIdAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        String findName = "OneItem";
+        Item itemOne = tracker.add(new Item(findName));
+        Item itemTwo = tracker.add(new Item("TwoItem"));
+
+        Input in = new StubInput(
+                new String[]{"0", "1", "1"}
+        );
+        UserAction[] actions = {
+                new FindByIdAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is(findName));
+    }
+
+    @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -35,7 +92,7 @@ public class StartUITest {
                 new String[]{"0" /* входные параметры для ReplaceAction */, "1", replacedName, "1"}
         );
         UserAction[] actions = {
-                new ReplaceAction(),
+                new ReplaceAction(out),
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
@@ -53,7 +110,7 @@ public class StartUITest {
                 new String[]{"0" /* входные параметры для DeleteAction */, "1", "1"}
         );
         UserAction[] actions = {
-                new DeleteAction(),
+                new DeleteAction(out),
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
