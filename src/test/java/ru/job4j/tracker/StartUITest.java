@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -39,15 +40,15 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator()
-                + "0. Show all items" + System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Show all items ====" + System.lineSeparator()
-                + "ID: 1 Name: OneItem" + System.lineSeparator()
-                + "ID: 2 Name: OneItem" + System.lineSeparator()
-                + "Menu." + System.lineSeparator()
-                + "0. Show all items" + System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Exit Program ====" + System.lineSeparator()
+                        + "0. Show all items" + System.lineSeparator()
+                        + "1. Exit" + System.lineSeparator()
+                        + "=== Show all items ====" + System.lineSeparator()
+                        + "ID: 1 Name: OneItem" + System.lineSeparator()
+                        + "ID: 2 Name: OneItem" + System.lineSeparator()
+                        + "Menu." + System.lineSeparator()
+                        + "0. Show all items" + System.lineSeparator()
+                        + "1. Exit" + System.lineSeparator()
+                        + "=== Exit Program ====" + System.lineSeparator()
 
         ));
     }
@@ -156,7 +157,7 @@ public class StartUITest {
     public void whenExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0"}
+                new String[]{"0"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
@@ -166,7 +167,7 @@ public class StartUITest {
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator()
                         + "0. Exit" + System.lineSeparator()
-                + "=== Exit Program ====" + System.lineSeparator()
+                        + "=== Exit Program ====" + System.lineSeparator()
         ));
     }
 
@@ -174,7 +175,7 @@ public class StartUITest {
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"1", "0"}/* Пункты меню: неверный, верный.*/
+                new String[]{"1", "0"}/* Пункты меню: неверный, верный.*/
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
