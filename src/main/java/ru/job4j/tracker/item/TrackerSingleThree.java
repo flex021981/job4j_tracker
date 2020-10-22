@@ -1,26 +1,33 @@
 package ru.job4j.tracker.item;
 
 import ru.job4j.tracker.Item;
-//private static final class. Lazy loading.
+import ru.job4j.tracker.Tracker;
+
+//static final field. Eager loading.
 public class TrackerSingleThree {
+    private static final TrackerSingleThree INSTANCE = new TrackerSingleThree();
+    private Tracker tracker;
 
     private TrackerSingleThree() {
+        tracker = new Tracker();
+    }
+
+    public Tracker getTracker() {
+        return tracker;
     }
 
     public static TrackerSingleThree getInstance() {
-        return Holder.INSTANCE;
+        return INSTANCE;
     }
 
     public Item add(Item model) {
+        tracker.add(model);
         return model;
     }
 
-    private static final class Holder {
-        private static final TrackerSingleThree INSTANCE = new TrackerSingleThree();
-    }
-
     public static void main(String[] args) {
-        //private static final class. Lazy loading.
+        //static final field. Eager loading.
         TrackerSingleThree tracker = TrackerSingleThree.getInstance();
+
     }
 }

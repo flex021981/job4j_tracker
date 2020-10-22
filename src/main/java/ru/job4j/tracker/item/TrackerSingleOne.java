@@ -1,31 +1,19 @@
 package ru.job4j.tracker.item;
 
 import ru.job4j.tracker.Item;
+import ru.job4j.tracker.Tracker;
 
-//static field. Lazy loading.
-public class TrackerSingleOne {
-    private static TrackerSingleOne instance;
-
-    private TrackerSingleOne() {
-    }
-
-    public static TrackerSingleOne getInstance() {
-        if (instance == null) {
-            instance = new TrackerSingleOne();
-        }
-        return instance;
-    }
-
+//enum. Eager loading.
+public enum TrackerSingleOne {
+    INSTANCE; // здесь мы указываем перечисления.
+    // Конструкторы и методы.
+    private Tracker tracker  = new Tracker();
     public Item add(Item model) {
+        tracker.add(model);
         return model;
     }
 
-    public static void main(String[] args) {
-        //enum. Eager loading.
-        TrackerSingle trackerSingle = TrackerSingle.INSTANCE;
-
-        //static field. Lazy loading.
-        TrackerSingleOne trackerSingleOne = TrackerSingleOne.getInstance();
+    public Tracker getTracker() {
+        return tracker;
     }
 }
-
