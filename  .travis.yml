@@ -15,7 +15,7 @@ after_success:
 notifications:
   email:
     recipients:
-      -flex021981@gmail.com
+      - flex021981@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
 
