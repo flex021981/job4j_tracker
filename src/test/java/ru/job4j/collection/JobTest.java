@@ -14,11 +14,17 @@ public class JobTest {
         Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(
                 new JobDescByPriority()
         );
+        Comparator<Job> cmpName = new JobDescByName();
         int rsl = cmpNamePriority.compare(
                 new Job("Impl task", 0),
                 new Job("Fix bug", 1)
         );
+        int rsl1 = cmpName.compare(
+                new Job("Impl task", 0),
+                new Job("Fix bug", 1)
+        );
         assertThat(rsl, lessThan(0));
+        assertThat(rsl1, lessThan(0));
     }
 
     @Test
