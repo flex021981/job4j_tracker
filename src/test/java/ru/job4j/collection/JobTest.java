@@ -17,7 +17,9 @@ public class JobTest {
                 new Job("Fix bug", 1)
         );
         assertThat(rsl, lessThan(0));
-        cmp.thenComparing(new JobAscByPriority());
+        rsl = cmp.thenComparing(new JobAscByPriority()).compare(
+                new Job("Impl task", 0),
+                new Job("Fix bug", 1));
         assertThat(rsl, lessThan(0));
     }
 
