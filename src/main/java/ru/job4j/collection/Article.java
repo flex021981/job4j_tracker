@@ -8,6 +8,11 @@ public class Article {
         origin = origin.replaceAll("\\p{Punct}", "");
         List<String> originList = Arrays.asList(origin.toLowerCase().split(" "));
         List<String> lineList = Arrays.asList(line.toLowerCase().split(" "));
-        return originList.containsAll(lineList);
+        for (String word : lineList) {
+            if (!originList.contains(word)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
