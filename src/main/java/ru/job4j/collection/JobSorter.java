@@ -24,10 +24,20 @@ public class JobSorter {
 /*        Collections.sort(jobs, new JobDescByName().thenComparing(new JobDescByPriority()));
         System.out.println(jobs);*/
 
-        Comparator<Job> comb = new JobDescByName()
+/*        Comparator<Job> comb = new JobDescByName()
                 .thenComparing(new JobDescByPriority())
                 .thenComparing(new JobDescByNameLn());
         Collections.sort(jobs, comb);
+        System.out.println(jobs);
+
+        jobs.sort(new JobDescByName().thenComparing(new JobDescByPriority()));
+        System.out.println(jobs);*/
+
+        Comparator<Job> compareName = Comparator.comparing(Job::getName);
+        Comparator<Job> comparePriority = Comparator.comparingInt(Job::getPriority);
+        Comparator<Job> combine = compareName.thenComparing(comparePriority);
+
+        jobs.sort(combine);
         System.out.println(jobs);
     }
 }
