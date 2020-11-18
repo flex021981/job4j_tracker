@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static org.hamcrest.core.Is.is;
@@ -59,6 +60,16 @@ public class SchoolTest {
         expected.add(new Student(20, "Surname2"));
         expected.add(new Student(30, "Surname3"));
         expected.add(new Student(40, "Surname4"));
+        assertThat(rsl, is(expected));
+    }
+
+    @Test
+    public void listOfStudentsToMap() {
+        School sc = new School();
+        students.add(new Student(10, "Surname1"));
+        Map<String, Student> mStudents = sc.collectToMap(students);
+        Student expected = mStudents.get(students.get(0).getSurname());
+        Student rsl = students.get(0);
         assertThat(rsl, is(expected));
     }
 }
