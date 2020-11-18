@@ -32,12 +32,11 @@ public class BankService {
         Optional<Account> rsl = null;
         Optional<User> user = findByPassport(passport);
         if (user.isPresent()) {
-            rsl = Optional.ofNullable(users
+            rsl = users
                     .get(user.get())
                     .stream()
                     .filter(a -> a.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null));
+                    .findFirst();
         }
         return rsl;
     }
