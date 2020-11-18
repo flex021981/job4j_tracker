@@ -1,6 +1,9 @@
 package ru.job4j.bank;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
@@ -22,37 +25,23 @@ public class BankService {
     }
 
     public User findByPassport(String passport) {
-        User rsl = null;
-        Optional<Map.Entry<User, List<Account>>> rslOpt = users.entrySet()
+        User rsl = users.keySet()
                 .stream()
-                .filter(u -> u.getKey().getPassport().equals(passport))
-                .findFirst();
-        if (rslOpt.isPresent()) {
-            rsl = rslOpt.get().getKey();
-        }
+                .filter(u -> u.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
         return rsl;
-
-        /*User rsl = null;
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                rsl = user;
-                break;
-            }
-        }
-        return rsl;*/
     }
 
     public Account findByRequisite(String passport, String requisite) {
         Account rsl = null;
-        User user = findByPassport(passport);
-        if (user != null) {
-            List<Account> accountList = users.get(user);
-            for (Account account : accountList) {
-                if (account.getRequisite().equals(requisite)) {
-                    rsl = account;
-                    break;
-                }
-            }
+        if (users.containsKey(findByPassport(passport))) {
+            rsl = users
+                    .get(findByPassport(passport))
+                    .stream()
+                    .filter(a -> a.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return rsl;
     }
