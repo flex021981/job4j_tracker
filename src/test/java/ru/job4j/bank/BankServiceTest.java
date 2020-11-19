@@ -2,6 +2,8 @@ package ru.job4j.bank;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -22,7 +24,7 @@ public class BankServiceTest {
         BankService bank = new BankService();
         bank.addUser(user);
         bank.addAccount(user.getPassport(), new Account("5546", 150D));
-        assertNull(bank.findByRequisite("34", "5546"));
+        assertThat(bank.findByRequisite("34", "5546"), is(Optional.empty()));
     }
 
     @Test
