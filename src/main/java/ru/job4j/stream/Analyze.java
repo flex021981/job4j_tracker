@@ -35,6 +35,7 @@ public class Analyze {
                 .entrySet()
                 .stream()
                 .map(s -> new Tuple(s.getKey(), s.getValue()))
+                .sorted(Comparator.comparing(Tuple::getName).reversed())
                 .collect(Collectors.toList());
     }
 
